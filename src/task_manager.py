@@ -21,3 +21,16 @@ class TaskManager:
         
     def get_completed_tasks(self):
         return [task for task in self.tasks if task.completed]
+    
+    def get_tasks_by_priority(self, priority):
+        return [task for task in self.tasks if task.priority == priority]
+    
+    def get_tasks_sorted_by_priority(self):
+        priority_order = {"high": 0, "medium": 1, "low": 2}
+        return sorted(self.tasks, key=lambda task: priority_order.get(task.priority, 3))
+    
+    def remove_task(self, task):
+        if task in self.tasks:
+            self.tasks.remove(task)
+            return True
+        return False
