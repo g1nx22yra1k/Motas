@@ -29,3 +29,14 @@ class Task:
         status = "✓" if self.completed else "○"
         priority_symbol = self.get_priority_symbol()
         return f"{status} {priority_symbol} {self.title}"
+    
+    def to_dict(self):
+        """Convert task to dictionary for serialization"""
+        return {
+            "title": self.title,
+            "description": self.description,
+            "priority": self.priority,
+            "completed": self.completed,
+            "created_at": self.created_at.isoformat(),
+            "completed_at": self.completed_at.isoformat() if self.completed_at else None
+        }
